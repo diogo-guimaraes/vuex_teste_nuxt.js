@@ -16,24 +16,25 @@
           rel="noopener noreferrer"
           class="button--green"
         >
-          {{counter}}
+          {{counter}} Contador
         </button >
-        <a
-          @click="handleClick"
+        <a       
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
         >
           {{user.nome}}, {{aulasCompletas}}, {{nomeMaiusculo}}
         </a>
-         <a
-          @click="completarAula"
+         <button
+          @click="COMPLETAR_AULA"
+          
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
-        >
-          {{aulasCompletas}}
-        </a>
+        > 
+          completar aulas
+          {{aulasCompletas}} 
+        </button>
         <button class="button--grey" @click="handleClick">Alterar Usuário</button>
       </div>
     </div>
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
 export default {
   data(){
     return {
@@ -67,21 +68,26 @@ export default {
     }
   },
   methods: {
-     handleClick() {
+    ...mapMutations(["CHANGE_USER", "COMPLETAR_AULA"]),
+    handleClick() {
       // commit é utilizado para ativar a mutação.
-      this.$store.commit("changeUser", {
+      // this.$store.commit("changeUser", {
+        this.CHANGE_USER({
         nome: this.novoUser.nome,
         senha: this.novoUser.senha
       });
-      console.log(this.$store.state.user)
+      // this.completarAula();
+      //  });
+      // console.log(this.$store.state.user)
     },
     incrementClick() {
       // commit é utilizado para ativar a mutação.
-      this.$store.commit("increment");
+      this.$store.commit("INCREMENT");
     },
-    completarAula(){
-       this.$store.commit("completarAula");
-    }
+    // completarAulaClick(){
+    //   this.completarAula();
+    //   // this.$store.commit("completarAula");
+    // }
   },
   created(){
 

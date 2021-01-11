@@ -17,14 +17,15 @@ export const state = () => ({
 })
 
 export const mutations = {
-  changeUser(state , payload) {
+  CHANGE_USER(state , payload) {
+    // console.log(payload.nome)
     state.user.nome = payload.nome
     state.user.senha = payload.senha
   },
-  increment(state) {
+  INCREMENT(state) {
     state.counter++
   },
-  completarAula(state) {
+  COMPLETAR_AULA(state) {
     state.aulasCompletas++
   }
 }
