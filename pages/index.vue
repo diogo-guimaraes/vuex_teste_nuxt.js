@@ -4,6 +4,8 @@
       <Logo />
       <h1 class="title">
         <p>{{user.nome}} </p>
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" v-model="novoUser">
       </h1>
       <div class="links">
         <button 
@@ -22,6 +24,14 @@
         >
           {{user.nome}}, {{aulasCompletas}}, {{nomeMaiusculo}}
         </a>
+         <a
+          @click="completarAula"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button--grey"
+        >
+          {{aulasCompletas}}
+        </a>
         <button class="button--grey" @click="handleClick">Alterar Usuário</button>
       </div>
     </div>
@@ -34,6 +44,7 @@ export default {
   data(){
     return {
       nome: 'diogo',
+      novoUser: ''
     }
   },  
   computed: {
@@ -53,11 +64,14 @@ export default {
   methods: {
      handleClick() {
       // commit é utilizado para ativar a mutação.
-      this.$store.commit("changeUser");
+      this.$store.commit("changeUser", this.novoUser);
     },
     incrementClick() {
       // commit é utilizado para ativar a mutação.
       this.$store.commit("increment");
+    },
+    completarAula(){
+       this.$store.commit("completarAula");
     }
   },
   created(){

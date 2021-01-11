@@ -17,10 +17,13 @@ export const state = () => ({
 })
 
 export const mutations = {
-  changeUser(state) {
-    state.user.nome = "Ave"
+  changeUser(state , payload) {
+    state.user.nome = payload
   },
   increment(state) {
     state.counter++
+  },
+  completarAula(state) {
+    state.aulasCompletas++
   }
 }
