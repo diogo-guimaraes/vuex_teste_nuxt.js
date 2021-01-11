@@ -5,7 +5,9 @@
       <h1 class="title">
         <p>{{user.nome}} </p>
         <label for="nome">Nome</label>
-        <input id="nome" name="nome" type="text" v-model="novoUser">
+        <input id="nome" name="nome" type="text" v-model="novoUser.nome">
+        <label for="senha">Senha</label>
+        <input id="senha" name="senha" type="text" v-model="novoUser.senha">
       </h1>
       <div class="links">
         <button 
@@ -44,7 +46,10 @@ export default {
   data(){
     return {
       nome: 'diogo',
-      novoUser: ''
+      novoUser: {
+        nome: '',
+        senha: ''
+      }
     }
   },  
   computed: {
@@ -64,7 +69,11 @@ export default {
   methods: {
      handleClick() {
       // commit é utilizado para ativar a mutação.
-      this.$store.commit("changeUser", this.novoUser);
+      this.$store.commit("changeUser", {
+        nome: this.novoUser.nome,
+        senha: this.novoUser.senha
+      });
+      console.log(this.$store.state.user)
     },
     incrementClick() {
       // commit é utilizado para ativar a mutação.

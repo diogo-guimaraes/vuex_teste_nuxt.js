@@ -18,7 +18,8 @@ export const state = () => ({
 
 export const mutations = {
   changeUser(state , payload) {
-    state.user.nome = payload
+    state.user.nome = payload.nome
+    state.user.senha = payload.senha
   },
   increment(state) {
     state.counter++
